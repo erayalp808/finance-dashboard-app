@@ -1,4 +1,5 @@
 import DashboardBox from '@/components/DashboardBox';
+import { useGetKpisQuery } from '@/states/api';
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 
 type Props = {};
@@ -52,6 +53,7 @@ const gridTemplateSmallScreens = `
 const Dashboard = (props: Props) => {
     const isAboveMediumScreen = useMediaQuery("(min-width: 1200px)");
     const { palette } = useTheme();
+    const { kpiData } = useGetKpisQuery();
     return (
         <Box width="100%" height="100%" display="grid" gap="1.5rem"
             sx={
