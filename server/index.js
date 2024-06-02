@@ -16,3 +16,16 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan("common"));
+
+/* MONGOOSE SETUP */
+const PORT = process.env.PORT || 8000;
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(async () => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on PORT ${ PORT }.`);
+    });
+}).catch((error) => {
+    console.error(`${ error } did not connect.`);
+});
